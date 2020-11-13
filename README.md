@@ -24,7 +24,7 @@
 $ git clone https://github.com/jm12138/deep_sort_paddle.git
 ```
 
-* 下载预训练模型：[链接](http://bj.bcebos.com/v1/ai-studio-online/7e9d35a4c3f74a5b8d86220af0a082bb1b98e718ec084d149790bcf3dbb291bb?responseContentDisposition=attachment%3B%20filename%3Dmodel.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-11-13T07%3A01%3A51Z%2F-1%2F%2F65900c82aabcc6a3614094aeda14cdbd56ec00b63f845acbf034168b15883278)
+* 下载预训练模型（行人多目标追踪）：[链接](http://bj.bcebos.com/v1/ai-studio-online/7e9d35a4c3f74a5b8d86220af0a082bb1b98e718ec084d149790bcf3dbb291bb?responseContentDisposition=attachment%3B%20filename%3Dmodel.zip&authorization=bce-auth-v1%2F0ef6765c1e494918bc0d4c3ca3e5c6d1%2F2020-11-13T07%3A01%3A51Z%2F-1%2F%2F65900c82aabcc6a3614094aeda14cdbd56ec00b63f845acbf034168b15883278)
 
 * 预测推理：
 ```shell
