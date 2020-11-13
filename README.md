@@ -31,6 +31,8 @@ $ cd deep_sort_paddle
 $ python main.py \
     --video_path PATH_TO_VIDEO \
     --save_dir PATH_SAVE_DIR \
-    --use_gpu \
-    --display
+    --det_model_dir DET_MODEL_DIR \
+    --emb_model_dir EMB_MODEL_DIR \
+    --use_gpu SET_IT_IF_USE_GPU \
+    --display SET_IT_IF_DISPLAY_RESULTS  
 ```
