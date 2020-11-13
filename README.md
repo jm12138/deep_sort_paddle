@@ -4,7 +4,9 @@
 
 * 基于[DeepSort](https://github.com/nwojke/deep_sort)官方开源代码开发，将其中的深度学习模型更换为Paddle模型
 
-* 预训练检测模型来自[PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)套件中的[特色垂类检测模型](https://github.com/PaddlePaddle/PaddleDetection/blob/release/0.4/docs/featured_model/CONTRIB_cn.md)，兼容PaddleDetection套件导出的其他检测模型（单类别）
+* 预训练检测模型来自[PaddleDetection](https://github.com/PaddlePaddle/PaddleDetection)套件中的[特色垂类检测模型](https://github.com/PaddlePaddle/PaddleDetection/blob/release/0.4/docs/featured_model/CONTRIB_cn.md)
+
+* 兼容PaddleDetection套件导出的其他检测模型（单类别）
 
 * 预训练特征提取模型基于Paddle官方模型库中的[Metric Learning](https://github.com/PaddlePaddle/models/tree/develop/PaddleCV/metric_learning)模型开发
 
