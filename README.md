@@ -1,6 +1,6 @@
-# **deep_sort_paddle**
+# **Deep Sort算法的Paddle实现**
 
-## **Deep Sort算法的Paddle实现**
+## **简介**
 
 * 基于[DeepSort](https://github.com/nwojke/deep_sort)官方开源代码开发，将其中的深度学习模型更换为Paddle模型
 
