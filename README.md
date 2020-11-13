@@ -14,7 +14,7 @@
 
 ## **效果展示**
 
-![](https://ai-studio-static-online.cdn.bcebos.com/f1225a0ec9a04fb794351efdcedc3709e9004f68f96b4f1c96d7a59cfe5f5be7)
+![行人多目标追踪](https://ai-studio-static-online.cdn.bcebos.com/f1225a0ec9a04fb794351efdcedc3709e9004f68f96b4f1c96d7a59cfe5f5be7)
 
 ## **快速使用**
 
