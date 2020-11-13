@@ -38,6 +38,8 @@ def main(args):
 
     while True:
         success, frame = cap.read()
+        if not success:
+            break
         outputs = deepsort.update(frame)
         if outputs is not None:
             for output in outputs:
