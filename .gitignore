@@ -132,3 +132,5 @@ dmypy.json
 model_ppdet_2.x.zip
 model/emb/
 model/det/
+mot_images/
+output/
