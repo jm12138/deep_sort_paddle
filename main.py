@@ -44,8 +44,11 @@ def main(args):
         writer = cv2.VideoWriter(
             save_video_path, fourcc, fps, (int(w), int(h)))
 
+    frame_id = 0
+    track_outputs = []
     while True:
         success, frame = cap.read()
+        frame_id += 1
         if not success:
             break
         outputs = deepsort.update(frame)
@@ -55,7 +58,10 @@ def main(args):
                     frame, (output[0], output[1]), (output[2], output[3]), (0, 0, 255), 2)
                 cv2.putText(frame, str(
                     output[-1]), (output[0], output[1]), font, 1.2, (255, 255, 255), 2)
-        print(outputs)
+                x1, y1, x2, y2, track_id = output
+                output = ' '.join(str(x) for x in [frame_id, track_id, x1, y1, x2-x1, y2-y1, 1, -1, -1, -1])
+                print(output)
+                track_outputs.append(output)
         if args.save_dir:
             writer.write(frame)
         if args.display:
@@ -68,6 +74,11 @@ def main(args):
     if args.save_dir:
         writer.release()
 
+        with open(os.path.join(args.save_dir, 'result.txt'), 'w') as f:
+            for line in track_outputs:
+                f.write(line+'\n')
+    
+    cap.release()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
