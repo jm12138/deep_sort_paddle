@@ -134,3 +134,4 @@ model/emb/
 model/det/
 mot_images/
 output/
+result/

@@ -94,7 +94,7 @@ def main(args):
                     cv2.putText(frame, str(
                         output[-1]), (output[0], output[1]), font, 1.2, (255, 255, 255), 2)
                     x1, y1, x2, y2, track_id = output
-                    output = ' '.join(str(x) for x in [frame_id, track_id, x1, y1, x2-x1, y2-y1, 1, -1, -1, -1])
+                    output = ','.join(str(x) for x in [frame_id, track_id, x1, y1, x2-x1, y2-y1, 1, -1, -1, -1])
                     print(output)
                     track_outputs.append(output)
             if args.save_dir:
