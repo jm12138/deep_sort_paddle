@@ -4,23 +4,31 @@ import numpy as np
 from paddle.inference import Config
 from paddle.inference import create_predictor
 
+
 __all__ = ['Embedding']
 
-class Embedding():
-    def __init__(self, model_dir, use_gpu=False):
-        self.predictor, self.input_handle, self.output_handle = self.load_model(model_dir, use_gpu)
 
-    def load_model(self, model_dir, use_gpu=False):
+class Embedding():
+    def __init__(self, model_dir, use_gpu=False, enable_mkldnn=False, cpu_threads=1):
+        self.predictor, self.input_handle, self.output_handle = self.load_model(
+            model_dir, use_gpu, enable_mkldnn, cpu_threads
+        )
+
+    def load_model(self, model_dir, use_gpu=False, enable_mkldnn=False, cpu_threads=1):
         model = os.path.join(model_dir, '__model__')
         params = os.path.join(model_dir, '__params__')
         config = Config(model, params)
 
         # 设置参数
-        if use_gpu:   
+        if use_gpu:
             config.enable_use_gpu(100, 0)
         else:
             config.disable_gpu()
-            config.enable_mkldnn()
+            config.set_cpu_math_library_num_threads(cpu_threads)
+            if enable_mkldnn:
+                config.enable_mkldnn()
+                config.set_mkldnn_cache_capacity(10)
+
         config.disable_glog_info()
         config.switch_ir_optim(True)
         config.enable_memory_optim()
@@ -52,7 +60,7 @@ class Embedding():
             img /= img_std
             img = np.expand_dims(img, axis=0)
             im_batch.append(img)
-        
+
         im_batch = np.concatenate(im_batch, 0)
         return im_batch
 
@@ -62,6 +70,7 @@ class Embedding():
         self.predictor.run()
         result = self.output_handle.copy_to_cpu()
         return result
+
 
 if __name__ == '__main__':
 

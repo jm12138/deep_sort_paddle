@@ -26,6 +26,8 @@ class DeepSort(object):
         max_age=70,
         n_init=3
     ):
+        self.threshold = threshold
+
         self.detector = Detector(
             model_dir=det_model_dir,
             use_gpu=use_gpu,
@@ -38,23 +40,41 @@ class DeepSort(object):
             cpu_threads=cpu_threads,
             enable_mkldnn=enable_mkldnn
         )
-        self.emb = Embedding(emb_model_dir, use_gpu)
-        self.threshold = threshold
+
+        self.emb = Embedding(
+            emb_model_dir,
+            use_gpu,
+            enable_mkldnn,
+            cpu_threads
+        )
+
         metric = NearestNeighborDistanceMetric(
-            "cosine", max_cosine_distance, nn_budget)
+            "cosine",
+            max_cosine_distance,
+            nn_budget
+        )
         self.tracker = Tracker(
-            metric, max_iou_distance=max_iou_distance, max_age=max_age, n_init=n_init)
+            metric,
+            max_iou_distance=max_iou_distance,
+            max_age=max_age,
+            n_init=n_init
+        )
 
     def update(self, ori_img):
         self.height, self.width = ori_img.shape[:2]
-        
-        results = self.detector.predict(ori_img[np.newaxis, ...], self.threshold)
+
+        results = self.detector.predict(
+            ori_img[np.newaxis, ...],
+            self.threshold
+        )
+
         if results is None:
             return None
         else:
             tlwh, xyxy, confidences = results
             if not confidences.tolist():
                 return None
+
         # generate detections
         features = self.get_features(xyxy, ori_img)
         detections = [Detection(tlwh[i], conf, features[i])
